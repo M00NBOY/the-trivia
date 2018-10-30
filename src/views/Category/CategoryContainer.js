@@ -8,11 +8,11 @@ class CategoryContainer extends Component {
     category: {}
   }
   componentWillMount () {
-    storeLocal.saveCategory(this.props.match.params.name)
+    storeLocal.saveCategory(this.props.match.params.id)
     console.log(storeLocal.getCategory())
   }
   async componentDidMount () {
-    const data = await api.getCategorybyId(this.props.match.params.name)
+    const data = await api.getCategorybyId(this.props.match.params.id)
     this.setState({
       category: data
     })
