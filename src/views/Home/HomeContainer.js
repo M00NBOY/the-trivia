@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import api from '../../helpers/api'
 import Home from './Home.js'
 
 class HomeContainer extends Component {
@@ -6,11 +7,10 @@ class HomeContainer extends Component {
     categories: []
   }
 
-  componentDidMount () {
-    fetch("http://jservice.io/api/categories?count=100")
-    .then(response => response.json())
-    .then(data => {
-      this.setState({categories: data})
+  async componentDidMount () {
+    const data = await api.getCategories()
+    this.setState({
+      categories: data
     })
   }
 
