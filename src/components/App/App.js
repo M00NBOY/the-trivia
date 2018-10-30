@@ -8,12 +8,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <Fragment>
-            <Route path="/" exact component={HomeContainer} />
-            <Route path="/category/:name" component={CategoryContainer} />
-          </Fragment>
-        </div>
+      <div className="App">
+        <Fragment>
+          <Route path="/" exact component={HomeContainer} />
+          <Route path="/category/:name" component={CategoryContainer} />
+        </Fragment>
+      </div>
       </Router>
     );
   }
