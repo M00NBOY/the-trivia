@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const Home = ({ categories }) => (
-  <section>
-    <h2>Homepage</h2>
+  <section className="homepage">
+    <h2>Homepage - Category selection</h2>
     {
       categories.length > 0 && (
         <section>
+          <ul>
           { categories.map(category =>
-            (<Link to={`category/${category.id}`} key={category.id}>
-              <button>{category.title}</button>
-            </Link>)
+            (<li key={category.id}><Link to={`category/${category.id}`}>
+              {category.title}
+            </Link></li>)
           )}
+          </ul>
         </section>
       )
     }
