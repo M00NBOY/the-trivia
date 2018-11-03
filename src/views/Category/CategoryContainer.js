@@ -8,10 +8,16 @@ class CategoryContainer extends Component {
     super(props)
     this.state = {
       category: {},
-      input: ''
+      questionIndex: 0,
+      input: '',
+      attempts: 3,
+      result: null,
+      score: 0
     }
     this.inputChange = this.inputChange.bind(this)
     this.checkAnswer = this.checkAnswer.bind(this)
+    this.resetCategory = this.resetCategory.bind(this)
+    this.showQuestion = this.showQuestion.bind(this)
   }
   
   componentWillMount () {
@@ -23,6 +29,7 @@ class CategoryContainer extends Component {
     this.setState({
       category: data
     })
+    console.log(this.state.category.clues.length)
   }
   
   inputChange (e) {
@@ -33,25 +40,58 @@ class CategoryContainer extends Component {
 
   checkAnswer (e) {
     if (e.which !== 13) return
+    if (this.state.attempts < 1) {
+      return
+    }
     const { category: { clues } } = this.state
-
-    console.log('CHECK >', e.target.value)
-    console.log('answer = ', clues[0].answer)
-    if(this.state.input.toLowerCase() === clues[0].answer.toLowerCase() ){
-      console.log('gagné')
+    console.log('answer: ', clues[this.state.questionIndex].answer)
+    if(this.state.input.toLowerCase() === clues[this.state.questionIndex].answer.toLowerCase()){
+      this.setState((state) => ({
+        result: true,
+        input: '',
+        score: state.score + state.attempts,
+        attempts: 3,
+        questionIndex: state.questionIndex + 1
+      }))
+      console.log(this.state.questionIndex)
     } else {
-      console.log('prouuuuut')
+      this.setState((state) => ({
+        result: false,
+        input: '',
+        attempts: state.attempts - 1
+      }))
     }
   }
 
+  resetCategory (e) {
+    e.preventDefault()
+    this.setState((state) => ({
+      result: null,
+      input: '',
+      score: 0,
+      attempts: 3,
+      questionIndex: 0
+    }))
+  }
+
+  showQuestion () {
+    return this.state.category.clues ? this.state.questionIndex < this.state.category.clues.length : null
+  }
+
   render () {
-    const { category, input } = this.state
+    const { category, input, attempts, result, score, questionIndex } = this.state
     return (
       <Category
         category={category}
         input={input}
         inputChange={this.inputChange}
         checkAnswer={this.checkAnswer}
+        resetCategory={this.resetCategory}
+        attempts={attempts}
+        result={result}
+        score={score}
+        index={questionIndex}
+        showQuestion={this.showQuestion}
       />
     )
   }
