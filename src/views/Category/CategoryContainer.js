@@ -24,12 +24,12 @@ class CategoryContainer extends Component {
     storeLocal.saveCategory(this.props.match.params.id)
     console.log(storeLocal.getCategory())
   }
+
   async componentDidMount () {
     const data = await api.getCategorybyId(this.props.match.params.id)
     this.setState({
       category: data
     })
-    console.log(this.state.category.clues.length)
   }
   
   inputChange (e) {

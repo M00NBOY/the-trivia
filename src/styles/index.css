@@ -3,20 +3,20 @@
   font-family: "VT323";
 }
 
+:root {
+  --main-bg-color: rgb(0,8,0);
+  --main-font-color: rgb(0, 255, 60);
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "VT323";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(0,8,0);
-  color: rgb(0, 255, 60);
+  background-color: var(--main-bg-color);
+  color: var(--main-font-color);
   font-size: 40px;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 /* HOMEPAGE */
@@ -30,7 +30,7 @@ code {
 
 .homepage a {
   text-decoration: none;
-  color: rgb(0, 255, 60);
+  color: var(--main-font-color);
   white-space: nowrap;
 }
 
@@ -45,9 +45,7 @@ code {
   animation: blinking 0.8s infinite step-start;
 }
 
-
 /* CATEGORY */
-
 .category {
   padding: 40px 80px;
 }
@@ -55,9 +53,10 @@ code {
 .category .back, .category .reset {
   display: block;
   text-decoration: none;
-  color: rgb(0, 255, 60);
+  color: var(--main-font-color);
   white-space: nowrap;
   margin-bottom: 40px;
+  width: min-content;
   transform: translateX(-30px);
 }
 
@@ -65,7 +64,7 @@ code {
 .category .reset:hover:after {
   content:"<";
   margin-left: 10px;
-  animation: blinking 0.8s infinite step-start;
+  /* animation: blinking 0.8s infinite step-start; */
 }
 
 .category h3 {
@@ -92,31 +91,28 @@ code {
   margin-bottom: 20px;
 }
 
-.category .answer input{
-  position: absolute;
-  top: 0;
-  left:0;
-  right:0;
-  bottom: 0;
-  height: 100%;
-  width:100%;
-  opacity: 0;
+.category .answerInput{
+  font-family: "VT323";
+  border: none;
+  color: var(--main-font-color);
+  font-size: 40px;
+  background-color: rgba(0,0,0,0);
+  width: min-content
 }
 
-.category .answer .answerDisplay {
-  display: block;
-  min-height: 40px;
-}
-
-.category .answer .answerDisplay:before {
+.category .answer span:before {
   content: ">";
   margin: 0 10px;
 }
 
-.category .answer input:focus + .answerDisplay:after {
-  content: '_';
-  animation: blinking 0.8s infinite step-start;
+.category .answerResult {
+  margin-bottom: 40px;
 }
+
+.category .reset {
+  margin-top: 40px;
+}
+
 
 @keyframes blinking {
   0% {
@@ -128,8 +124,4 @@ code {
   100% {
     opacity: 0;
   }
-}
-
-.category .answerResult {
-  margin-bottom: 40px;
 }
