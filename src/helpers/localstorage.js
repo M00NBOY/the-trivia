@@ -1,9 +1,22 @@
 const storeLocal = {
-    saveCategory : category => {
-        localStorage.setItem('category', JSON.stringify(category))
+    saveLastCategory : categoryId => {
+        localStorage.setItem('lastCategory', JSON.stringify(categoryId))
     },
-    getCategory : _=> {
-        return localStorage.getItem('category')
+    getLastCategory : _=> {
+        return JSON.parse(localStorage.getItem('lastCategory'))
+    },
+
+    saveCategoryGame : (categoryData, categoryId) => {
+        let data = JSON.parse(localStorage.getItem('categoriesData'))
+        if (!data) {
+            data= {}
+        }
+        data[categoryId] = categoryData
+        localStorage.setItem('categoriesData', JSON.stringify(data))
+    },
+    getCategoryGame : (categoryId) => {
+        const data = JSON.parse(localStorage.getItem('categoriesData'))
+        return data ? data[categoryId] : null
     }
 }
 
