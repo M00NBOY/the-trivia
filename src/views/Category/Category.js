@@ -30,6 +30,7 @@ const Category = ({
               id="answer"
               className="answerInput"
               type='text'
+              placeholder="Type your answer"
               value={input}
               onChange={inputChange}
               onKeyDown={checkAnswer}
@@ -45,7 +46,7 @@ const Category = ({
         }
       </div>
     )}
-    <a className="reset" href="#" onClick={resetCategory}>Reset</a>
+    <button className="reset" onClick={resetCategory}>Reset</button>
   </section>
 )
 

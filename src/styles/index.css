@@ -45,12 +45,17 @@ body {
   animation: blinking 0.8s infinite step-start;
 }
 
+.homepage .lastCatIndication {
+  margin-left: 20px;
+  color: red;
+}
+
 /* CATEGORY */
 .category {
   padding: 40px 80px;
 }
 
-.category .back, .category .reset {
+.category .back {
   display: block;
   text-decoration: none;
   color: var(--main-font-color);
@@ -60,8 +65,7 @@ body {
   transform: translateX(-30px);
 }
 
-.category .back:hover:after, 
-.category .reset:hover:after {
+.category .back:hover:after {
   content:"<";
   margin-left: 10px;
   /* animation: blinking 0.8s infinite step-start; */
@@ -97,7 +101,7 @@ body {
   color: var(--main-font-color);
   font-size: 40px;
   background-color: rgba(0,0,0,0);
-  width: min-content
+  width: min-content;
 }
 
 .category .answer span:before {
@@ -111,8 +115,20 @@ body {
 
 .category .reset {
   margin-top: 40px;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  color: var(--main-font-color);
+  font-family: "VT323";
+  font-size: 40px;
+  transform: translateX(-30px);
+  cursor: pointer;
 }
 
+.category .reset:hover:after {
+  content:"<";
+  margin-left: 10px;
+  /* animation: blinking 0.8s infinite step-start; */
+}
 
 @keyframes blinking {
   0% {
