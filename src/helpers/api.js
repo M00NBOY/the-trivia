@@ -1,6 +1,6 @@
 const api = {
-  async getCategories () {
-    const response = await fetch("http://jservice.io/api/categories?count=100")
+  async getCategories (offset) {
+    const response = await fetch(`http://jservice.io/api/categories?count=100&offset=${offset}`)
     const json = response.json()
     return json
   },

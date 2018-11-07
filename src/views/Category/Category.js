@@ -24,15 +24,18 @@ const Category = ({
           <p>{clues && clues[index].question}</p>
         </div>
         <div className="answer">
-          <p>Your answer:</p>
-          <input
-            className="answerInput"
-            type='text'
-            value={input}
-            onChange={inputChange}
-            onKeyDown={checkAnswer}
-          />
-          <span className="answerDisplay">{input}</span>
+          <label htmlFor="answer">Your answer: </label>
+          <span>
+            <input
+              id="answer"
+              className="answerInput"
+              type='text'
+              placeholder="Type your answer"
+              value={input}
+              onChange={inputChange}
+              onKeyDown={checkAnswer}
+            />
+          </span>
         </div>
         { result !== null &&
           (<div>
@@ -43,7 +46,7 @@ const Category = ({
         }
       </div>
     )}
-    <a className="reset" href="#" onClick={resetCategory}>Reset</a>
+    <button className="reset" onClick={resetCategory}>Reset</button>
   </section>
 )
 

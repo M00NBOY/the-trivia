@@ -8,11 +8,13 @@ class CategoryContainer extends Component {
     super(props)
     this.state = {
       category: {},
-      questionIndex: 0,
+      game: {
+        questionIndex: 0,
+        attempts: 3,
+        result: null,
+        score: 0
+      },
       input: '',
-      attempts: 3,
-      result: null,
-      score: 0
     }
     this.inputChange = this.inputChange.bind(this)
     this.checkAnswer = this.checkAnswer.bind(this)
@@ -21,15 +23,21 @@ class CategoryContainer extends Component {
   }
   
   componentWillMount () {
-    storeLocal.saveCategory(this.props.match.params.id)
-    console.log(storeLocal.getCategory())
+    storeLocal.saveLastCategory(this.props.match.params.id)
   }
+
   async componentDidMount () {
     const data = await api.getCategorybyId(this.props.match.params.id)
     this.setState({
       category: data
     })
-    console.log(this.state.category.clues.length)
+
+    const gameData = storeLocal.getCategoryGame(this.props.match.params.id)
+    if (gameData) {
+      this.setState({
+        game: gameData
+      })
+    }
   }
   
   inputChange (e) {
@@ -40,46 +48,64 @@ class CategoryContainer extends Component {
 
   checkAnswer (e) {
     if (e.which !== 13) return
-    if (this.state.attempts < 1) {
+    if (this.state.game.attempts < 1) {
       return
     }
     const { category: { clues } } = this.state
-    console.log('answer: ', clues[this.state.questionIndex].answer)
-    if(this.state.input.toLowerCase() === clues[this.state.questionIndex].answer.toLowerCase()){
-      this.setState((state) => ({
-        result: true,
-        input: '',
-        score: state.score + state.attempts,
-        attempts: 3,
-        questionIndex: state.questionIndex + 1
-      }))
-      console.log(this.state.questionIndex)
-    } else {
-      this.setState((state) => ({
-        result: false,
-        input: '',
-        attempts: state.attempts - 1
-      }))
-    }
+    console.log('answer: ', clues[this.state.game.questionIndex].answer)
+
+    this.setState((state) => {
+      if(this.state.input.toLowerCase() === clues[this.state.game.questionIndex].answer.toLowerCase()){
+        return {
+          input: '',
+          game: {
+            ...state.game,
+            result: true,
+            score: state.game.score + 1,
+            attempts: 3,
+            questionIndex: state.game.questionIndex + 1
+          }
+        }
+      } else {
+        return {
+          input: '',
+          game: {
+            ...state.game,
+            result: false,
+            attempts: state.game.attempts - 1
+          }
+        }
+      }
+    }, () => {
+      storeLocal.saveCategoryGame(this.state.game, this.props.match.params.id)
+    })
+    
+
+
   }
 
   resetCategory (e) {
     e.preventDefault()
     this.setState((state) => ({
-      result: null,
       input: '',
-      score: 0,
-      attempts: 3,
-      questionIndex: 0
-    }))
+      game: {
+        ...state.game,
+        result: null,
+        score: 0,
+        attempts: 3,
+        questionIndex: 0
+      }
+    }), () => {
+    storeLocal.saveCategoryGame(this.state.game, this.props.match.params.id)
+    })
   }
 
   showQuestion () {
-    return this.state.category.clues ? this.state.questionIndex < this.state.category.clues.length : null
+    return this.state.category.clues ? this.state.game.questionIndex < this.state.category.clues.length : null
   }
 
   render () {
-    const { category, input, attempts, result, score, questionIndex } = this.state
+    const { category, input, game } = this.state
     return (
       <Category
         category={category}
@@ -87,11 +113,11 @@ class CategoryContainer extends Component {
         inputChange={this.inputChange}
         checkAnswer={this.checkAnswer}
         resetCategory={this.resetCategory}
-        attempts={attempts}
-        result={result}
-        score={score}
-        index={questionIndex}
         showQuestion={this.showQuestion}
+        attempts={game.attempts}
+        result={game.result}
+        score={game.score}
+        index={game.questionIndex}
       />
     )
   }
