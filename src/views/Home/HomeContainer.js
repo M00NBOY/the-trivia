@@ -14,23 +14,40 @@ class HomeContainer extends Component {
   }
 
   async componentDidMount () {
-    const data = await api.getCategories(this.state.offset)
-    this.setState((state) => ({
-      categories: data,
-      offset: state.offset + 100
-    }))
+    await this.getMoreCategory()    
     
     const lastCategory = storeLocal.getLastCategory()
     this.setState({
       lastCategory
     })
+
+    document.querySelector('a').focus()
+    window.addEventListener('keydown', event => {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault()
+        const nextElement = document.activeElement.parentNode.nextSibling
+        if (nextElement && nextElement.className === 'categoryLi') {
+          nextElement.firstChild.focus()
+        }
+      }
+      else if (event.key === 'ArrowUp') {
+        event.preventDefault()
+        const prevElement = document.activeElement.parentNode.previousSibling
+        if (prevElement && prevElement.className === 'categoryLi') {
+          prevElement.firstChild.focus()
+        }
+      }
+      // TODO: removeEventListener in componentDidUnmount
+    })
   }
 
   async getMoreCategory () {
-    const data = await api.getCategories(this.state.offset)
-    this.setState((state) => ({
-      categories: [...state.categories, ...data],
-      offset: state.offset + 100
+    const { offset } = this.state
+    const data = await api.getCategories(offset)
+    
+    this.setState(({ categories, offset }) => ({
+      categories: [...categories, ...data],
+      offset: offset + 100
     }))
   }
 

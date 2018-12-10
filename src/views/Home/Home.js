@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const Home = ({ categories, lastCategory, moreCat }) => (
-  <section className="homepage">
+  <section className="homepage crt">
     <h2>Homepage - Category selection</h2>
     {
       categories.length > 0 && (
         <section>
           <ul>
-          { categories.map(category =>
-            (<li key={category.id}>
+          { categories.map((category, i) =>
+            (<li key={category.id} className='categoryLi'>
               <Link to={`category/${category.id}`}>
                 {category.title}
               </Link>
@@ -21,7 +21,7 @@ const Home = ({ categories, lastCategory, moreCat }) => (
         </section>
       )
     }
-    <button onClick={moreCat}>More categories</button>
+    <button className="moreCatButton" onClick={moreCat}>More categories</button>
   </section>
 )
 
