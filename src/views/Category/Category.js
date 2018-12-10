@@ -6,25 +6,24 @@ const Category = ({
   input,
   inputChange,
   checkAnswer,
-  attempts,
-  result,
-  score,
-  index,
-  showQuestion,
-  resetCategory
+  game,
+  remainingQuestions,
+  resetCategory,
+  nextQuestion
 }) => (
-  <section className="category">
+  <section className="category crt">
     <Link className ="back" to="">Back to Home</Link>
-    <h3>Category: {title}</h3>
-    <p className="score">Score: {score}</p>
-    { showQuestion() && (
+    <h3>[Category: {title}]</h3>
+    <p className="score">Score: {game.score}{clues && !remainingQuestions() && (<span>/{clues.length}</span>)}</p>
+    { clues && remainingQuestions() && (
       <div>
         <div className="question">
-          <h4>Question #{index+1}</h4>
-          <p>{clues && clues[index].question}</p>
+          <h4>&#60; Question #{game.questionIndex+1} &#62;</h4>
+          <p>{clues && clues[game.questionIndex].question}</p>
         </div>
+        {game.attempts !== 0 && (
         <div className="answer">
-          <label htmlFor="answer">Your answer: </label>
+          {/* <label htmlFor="answer">Your answer: </label> */}
           <span>
             <input
               id="answer"
@@ -37,16 +36,29 @@ const Category = ({
             />
           </span>
         </div>
-        { result !== null &&
+        )}
+        { game.result !== null &&
           (<div>
-            <p className="answerResult">{
-              result ? "" : "WRONG!! " + (attempts !== 0 ? `${attempts} ATTEMPTS LEFT` : "GAME OVER") 
+            <p className="answergame">{
+              game.result ? "" : "Wrong answer, " + (game.attempts !== 0 ? `${game.attempts} attempts left` : "attempts left: 0 >>> Good answer: " + clues[game.questionIndex].answer + " <<<<") 
             }</p>
           </div>)
         }
+        <button className="nextQuestion" onClick={nextQuestion}>Next question</button>
       </div>
     )}
-    <button className="reset" onClick={resetCategory}>Reset</button>
+    {
+      clues && !remainingQuestions() && (
+        <div className="result">
+          <p>
+            { game.score > clues.length/2 && ("Well played!!") }
+            { game.score < clues.length/2 && ("Too bad!!") }
+          </p>
+          
+        </div>
+      )
+    }
+    { game.questionIndex > 0 && (<button className="reset" onClick={resetCategory}>Reset</button>)}
   </section>
 )
 

@@ -4,8 +4,8 @@ import Category from './Category'
 import storeLocal from '../../helpers/localstorage'
 
 class CategoryContainer extends Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
     this.state = {
       category: {},
       game: {
@@ -19,7 +19,8 @@ class CategoryContainer extends Component {
     this.inputChange = this.inputChange.bind(this)
     this.checkAnswer = this.checkAnswer.bind(this)
     this.resetCategory = this.resetCategory.bind(this)
-    this.showQuestion = this.showQuestion.bind(this)
+    this.remainingQuestions = this.remainingQuestions.bind(this)
+    this.nextQuestion = this.nextQuestion.bind(this)
   }
   
   componentWillMount () {
@@ -79,9 +80,6 @@ class CategoryContainer extends Component {
     }, () => {
       storeLocal.saveCategoryGame(this.state.game, this.props.match.params.id)
     })
-    
-
-
   }
 
   resetCategory (e) {
@@ -100,8 +98,24 @@ class CategoryContainer extends Component {
     })
   }
 
-  showQuestion () {
-    return this.state.category.clues ? this.state.game.questionIndex < this.state.category.clues.length : null
+  remainingQuestions () {
+    return this.state.game.questionIndex < this.state.category.clues.length
+  }
+
+  nextQuestion () {
+    console.log(this.state)
+    this.setState((state) => ({
+      input: '',
+      game: {
+        ...state.game,
+        result: null,
+        score: state.game.score,
+        attempts: 3,
+        questionIndex: state.game.questionIndex+1
+      }
+    }), () => {
+      storeLocal.saveCategoryGame(this.state.game, this.props.match.params.id)
+    })
   }
 
   render () {
@@ -113,11 +127,9 @@ class CategoryContainer extends Component {
         inputChange={this.inputChange}
         checkAnswer={this.checkAnswer}
         resetCategory={this.resetCategory}
-        showQuestion={this.showQuestion}
-        attempts={game.attempts}
-        result={game.result}
-        score={game.score}
-        index={game.questionIndex}
+        remainingQuestions={this.remainingQuestions}
+        nextQuestion={this.nextQuestion}
+        game={game}
       />
     )
   }
