@@ -1,30 +1,3 @@
-@font-face {
-  src: url("../assets/fonts/VT323-Regular.ttf");
-  font-family: "VT323";
-}
-
-:root {
-  --main-bg-color: rgb(3,30,17);
-  --main-font-color: rgb(18, 218, 64);
-  --warning-color: rgb(255,255,50);
-  --alert-color: ;
-}
-
-input:focus, button:focus {
-  outline: none;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "VT323";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--main-bg-color);
-  color: var(--main-font-color);
-  font-size: 30px;
-}
-
 /* LE BEAU CSS DE QUENTIN L'ENGIN */
 
 .crt, .crt button, .crt input {
