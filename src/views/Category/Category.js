@@ -12,8 +12,8 @@ const Category = ({
   nextQuestion
 }) => (
   <section className="category crt">
-    <Link className ="back" to="">Back to Home</Link>
-    <h3>[Category: {title}]</h3>
+    <Link className ="back" to="">HOME</Link>
+    <h3>[CATEGORY: {title}]</h3>
     <p className="score">Score: {game.score}{clues && !remainingQuestions() && (<span>/{clues.length}</span>)}</p>
     { clues && remainingQuestions() && (
       <div>
@@ -51,8 +51,8 @@ const Category = ({
       clues && !remainingQuestions() && (
         <div className="result">
           <p>
-            { game.score > clues.length/2 && ("Well played!!") }
-            { game.score < clues.length/2 && ("Too bad!!") }
+            { game.score > clues.length/2 && ("Well played!") }
+            { game.score < clues.length/2 && ("You suck") }
           </p>
           
         </div>

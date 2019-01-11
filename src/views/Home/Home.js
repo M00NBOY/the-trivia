@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const Home = ({ categories, lastCategory, moreCat }) => (
   <section className="homepage crt">
-    <h2>Homepage - Category selection</h2>
+    <h2>SELECT YOUR CATEGORY</h2>
     {
       categories.length > 0 && (
         <section>
@@ -21,7 +21,7 @@ const Home = ({ categories, lastCategory, moreCat }) => (
         </section>
       )
     }
-    <button className="moreCatButton" onClick={moreCat}>More categories</button>
+    <button className="moreCatButton" onClick={moreCat}>SHOW ME MORE</button>
   </section>
 )
 
