@@ -1,0 +1,53 @@
+
+
+.introductionLink {
+    text-decoration: none;
+    color: var(--main-font-color);
+    white-space: nowrap;
+}
+
+.introductionLink:hover, .introductionLink:focus{
+    outline: none;
+    background-color: var(--main-font-color);
+    box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
+    color: #1b3a22;
+    text-shadow: none;
+}
+
+// .introductionLink:before {
+//     content:">";
+//     margin-right: 10px;
+//     visibility: hidden;
+// }
+
+.introductionLink:after {
+    content:"_";
+    animation: blink 1s infinite;
+    // margin-right: 10px;
+}
+
+.introductionLink:hover:before, .introductionLink:focus:before {
+    visibility: visible;
+    /* animation: blinking 0.8s infinite step-start; */
+}
+
+.inputStart {
+    font-family: "VT323";
+    border: none;
+    color: var(--main-font-color);
+    font-size: 40px;
+    background-color: transparent;
+    width: min-content;
+}
+
+.introductionInput:after {
+    content:"_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {visibility: visible;};
+    50% {visibility: hidden;};
+    75% {visibility: hidden;};
+    100% {visibility: visible;};
+}
