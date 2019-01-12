@@ -12,6 +12,22 @@ class HomeContainer extends Component {
     }
     this.getMoreCategory = this.getMoreCategory.bind(this)
   }
+  navigate (event) {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault()
+      const nextElement = document.activeElement.parentNode.nextSibling
+      if (nextElement && nextElement.className === 'categoryLi') {
+        nextElement.firstChild.focus()
+      }
+    }
+    else if (event.key === 'ArrowUp') {
+      event.preventDefault()
+      const prevElement = document.activeElement.parentNode.previousSibling
+      if (prevElement && prevElement.className === 'categoryLi') {
+        prevElement.firstChild.focus()
+      }
+    }
+  } 
 
   async componentDidMount () {
     await this.getMoreCategory()    
@@ -22,23 +38,11 @@ class HomeContainer extends Component {
     })
 
     document.querySelector('a').focus()
-    window.addEventListener('keydown', event => {
-      if (event.key === 'ArrowDown') {
-        event.preventDefault()
-        const nextElement = document.activeElement.parentNode.nextSibling
-        if (nextElement && nextElement.className === 'categoryLi') {
-          nextElement.firstChild.focus()
-        }
-      }
-      else if (event.key === 'ArrowUp') {
-        event.preventDefault()
-        const prevElement = document.activeElement.parentNode.previousSibling
-        if (prevElement && prevElement.className === 'categoryLi') {
-          prevElement.firstChild.focus()
-        }
-      }
-      // TODO: removeEventListener in componentDidUnmount
-    })
+    window.addEventListener('keydown', this.navigate)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('keydown', this.navigate)
   }
 
   async getMoreCategory () {
