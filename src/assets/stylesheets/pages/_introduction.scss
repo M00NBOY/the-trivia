@@ -1,4 +1,9 @@
-
+.introduction {
+    padding: 20px 20px;
+    @media (min-width:768px) {
+        padding: 40px 80px;
+    }
+}
 
 .introductionLink {
     text-decoration: none;
