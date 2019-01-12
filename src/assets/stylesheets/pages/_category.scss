@@ -1,330 +1,103 @@
 .category {
   padding: 40px 80px;
-}
 
-.category .back {
-  display: block;
-  text-decoration: none;
-  color: var(--main-font-color);
-  white-space: nowrap;
-  margin-bottom: 40px;
-  width: min-content;
-  transform: translateX(-30px);
-}
+  .back {
+    display: block;
+    text-decoration: none;
+    color: var(--main-font-color);
+    white-space: nowrap;
+    margin-bottom: 40px;
+    width: min-content;
+    transform: translateX(-30px);
 
-.category .back:before {
-  content:"<";
-  margin-right: 10px;
-  visibility: hidden;
-}
+    &:before {
+      content:"<";
+      margin-right: 10px;
+      visibility: hidden;
+    }
 
-.category .back:hover:before {
-  content:"<";
-  margin-right: 10px;
-  visibility: visible;
-}
-
-.category h3 {
-  margin-bottom: 10px;
-}
-
-.category .score {
-  margin-bottom: 40px
-}
-
-.category .question {
-  margin-bottom: 40px;
-}
-
-.category .question h4{
-  margin-bottom: 10px;
-}
-
-.category .answer {
-  white-space: nowrap;
-  position: relative;
-  width: min-content;
-  height: min-content;
-  margin-bottom: 20px;
-}
-
-.category .answerInput{
-  font-family: "VT323";
-  border: none;
-  color: var(--main-font-color);
-  font-size: 40px;
-  background-color: transparent;
-  width: min-content;
-}
-
-.category .answer span:before {
-  content: "=>";
-  margin-right: 10px;
-}
-
-.category .answerResult {
-  margin-bottom: 40px;
-}
-
-.category button {
-  border: none;
-  background-color: transparent;
-}
-
-.category {
-  padding: 40px 80px;
-}
-
-.category .back {
-  display: block;
-  text-decoration: none;
-  color: var(--main-font-color);
-  white-space: nowrap;
-  margin-bottom: 40px;
-  width: min-content;
-  transform: translateX(-30px);
-}
-
-.category .back:before {
-  content:"<";
-  margin-right: 10px;
-  visibility: hidden;
-}
-
-.category .back:hover:before {
-  content:"<";
-  margin-right: 10px;
-  visibility: visible;
-}
-
-.category h3 {
-  margin-bottom: 10px;
-}
-
-.category .score {
-  margin-bottom: 40px
-}
-
-.category .question {
-  margin-bottom: 40px;
-}
-
-.category .question h4{
-  margin-bottom: 10px;
-}
-
-.category .answer {
-  white-space: nowrap;
-  position: relative;
-  width: min-content;
-  height: min-content;
-  margin-bottom: 20px;
-}
-
-.category .answerInput{
-  font-family: "VT323";
-  border: none;
-  color: var(--main-font-color);
-  font-size: 40px;
-  background-color: transparent;
-  width: min-content;
-}
-
-.category .answer span:before {
-  content: "=>";
-  margin-right: 10px;
-}
-
-.category .answerResult {
-  margin-bottom: 40px;
-}
-
-.category button {
-  border: none;
-  background-color: transparent;
-}
-
-.category {
-  padding: 40px 80px;
-}
-
-.category .back {
-  display: block;
-  text-decoration: none;
-  color: var(--main-font-color);
-  white-space: nowrap;
-  margin-bottom: 40px;
-  width: min-content;
-  transform: translateX(-30px);
-}
-
-.category .back:before {
-  content:"<";
-  margin-right: 10px;
-  visibility: hidden;
-}
-
-.category .back:hover:before {
-  content:"<";
-  margin-right: 10px;
-  visibility: visible;
-}
-
-.category h3 {
-  margin-bottom: 10px;
-}
-
-.category .score {
-  margin-bottom: 40px
-}
-
-.category .question {
-  margin-bottom: 40px;
-}
-
-.category .question h4{
-  margin-bottom: 10px;
-}
-
-.category .answer {
-  white-space: nowrap;
-  position: relative;
-  width: min-content;
-  height: min-content;
-  margin-bottom: 20px;
-}
-
-.category .answerInput{
-  font-family: "VT323";
-  border: none;
-  color: var(--main-font-color);
-  font-size: 40px;
-  background-color: transparent;
-  width: min-content;
-}
-
-.category .answer span:before {
-  content: "=>";
-  margin-right: 10px;
-}
-
-.category .answerResult {
-  margin-bottom: 40px;
-}
-
-.category button {
-  border: none;
-  background-color: transparent;
-}
-
-.category {
-  padding: 40px 80px;
-}
-
-.category .back {
-  display: block;
-  text-decoration: none;
-  color: var(--main-font-color);
-  white-space: nowrap;
-  margin-bottom: 40px;
-  width: min-content;
-  transform: translateX(-30px);
-}
-
-.category .back:before {
-  content:"<";
-  margin-right: 10px;
-  visibility: hidden;
-}
-
-.category .back:hover:before {
-  content:"<";
-  margin-right: 10px;
-  visibility: visible;
-}
-
-.category h3 {
-  margin-bottom: 10px;
-}
-
-.category .score {
-  margin-bottom: 40px
-}
-
-.category .question {
-  margin-bottom: 40px;
-}
-
-.category .question h4{
-  margin-bottom: 10px;
-}
-
-.category .answer {
-  white-space: nowrap;
-  position: relative;
-  width: min-content;
-  height: min-content;
-  margin-bottom: 20px;
-}
-
-.category .answerInput{
-  font-family: "VT323";
-  border: none;
-  color: var(--main-font-color);
-  font-size: 40px;
-  background-color: transparent;
-  width: min-content;
-}
-
-.category .answer span:before {
-  content: ">";
-  margin-right: 10px;
-}
-
-.category .answerResult {
-  margin-bottom: 40px;
-}
-
-.category button {
-  border: none;
-  background-color: transparent;
-  color: var(--main-font-color);
-  font-family: "VT323";
-  font-size: 40px;
-  cursor: pointer;
-}
-
-.category .nextQuestion {
-  margin: 20px;
-}
-
-.homepage .moreCatButton {
-  color: rgb(255,50,50);
-}
-
-.moreCatButton:hover {
-  background-color: rgb(255,50,50);
-  box-shadow: 0 0 5px rgb(221, 41, 41), 0 0 5px rgb(255, 84, 84);
-  color: #1b3a22;
-  text-shadow: none;
-}
-
-.nextQuestion:hover {
-  background-color: rgb(18, 218, 64);
-  box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
-  color: #1b3a22;
-  text-shadow: none;
+    &:hover:before {
+      content:"<";
+      margin-right: 10px;
+      visibility: visible;
+    }
   }
 
-.category .reset {
-  margin-top: 40px;
-  transform: translateX(-30px);
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  .score {
+    margin-bottom: 40px
+  }
+
+  .question {
+    margin-bottom: 40px;
+
+    h4{
+      margin-bottom: 10px;
+    }
+  }
+
+  .answer {
+    white-space: nowrap;
+    position: relative;
+    width: min-content;
+    height: min-content;
+    margin-bottom: 20px;
+
+    span:before {
+      content: "=>";
+      margin-right: 10px;
+    }
+  }
+
+  .answerInput{
+    font-family: "VT323";
+    border: none;
+    color: var(--main-font-color);
+    font-size: 40px;
+    background-color: transparent;
+    width: min-content;
+    margin-bottom: 40px;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    color: var(--main-font-color);
+    font-family: "VT323";
+    font-size: 40px;
+    cursor: pointer;
+  }
+
+  .answerResult {
+    margin-bottom: 40px;
+  }
+
+  .nextQuestion {
+    margin: 20px;
+    &:hover {
+      background-color: rgb(18, 218, 64);
+      box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
+      color: #1b3a22;
+      text-shadow: none;
+    }
+  }
+
+  .reset {
+    margin-top: 40px;
+    transform: translateX(-30px);
+  }
+
+
+  a:focus, a:hover, button:focus, button:hover {
+    outline: none;
+    background-color: rgb(18, 218, 64);
+    box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
+    color: #1b3a22;
+    text-shadow: none;
+  }
 }
 
-.category a:focus, .category a:hover, .category button:focus, .category button:hover {
-  outline: none;
-  background-color: rgb(18, 218, 64);
-  box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
-  color: #1b3a22;
-  text-shadow: none;
-}
+
