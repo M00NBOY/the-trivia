@@ -10,8 +10,46 @@ class HomeContainer extends Component {
       offset: 0,
       categories: []
     }
-    this.getMoreCategory = this.getMoreCategory.bind(this)
   }
+
+  async componentDidMount () {
+    await this.getMoreCategory()    
+    
+    /** Get the last selected category to indicate it in the list */
+    const lastCategory = storeLocal.getLastCategory()
+    this.setState({
+      lastCategory
+    })
+
+    document.querySelector('a').focus()
+    window.addEventListener('keydown', this.navigate)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('keydown', this.navigate)
+  }
+
+
+  /** 
+   * Get list of categories from api
+   * Array "categories" contains the categories list
+   * "offset" is used in the fetch request to get the next categories list
+   */
+  getMoreCategory = async () => {
+    const { offset } = this.state
+    const data = await api.getCategories(offset)
+    
+    this.setState(({ categories, offset }) => ({
+      categories: [...categories, ...data],
+      offset: offset + 100
+    }))
+  }
+
+  /**
+   * Allow navigation with direction arrow up & down
+   * Up button trigger focus on previous <a></a>
+   * Down button trigger focus on next <a></a>
+   */
   navigate (event) {
     if (event.key === 'ArrowDown') {
       event.preventDefault()
@@ -27,32 +65,6 @@ class HomeContainer extends Component {
         prevElement.firstChild.focus()
       }
     }
-  } 
-
-  async componentDidMount () {
-    await this.getMoreCategory()    
-    
-    const lastCategory = storeLocal.getLastCategory()
-    this.setState({
-      lastCategory
-    })
-
-    document.querySelector('a').focus()
-    window.addEventListener('keydown', this.navigate)
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('keydown', this.navigate)
-  }
-
-  async getMoreCategory () {
-    const { offset } = this.state
-    const data = await api.getCategories(offset)
-    
-    this.setState(({ categories, offset }) => ({
-      categories: [...categories, ...data],
-      offset: offset + 100
-    }))
   }
 
   render () {
