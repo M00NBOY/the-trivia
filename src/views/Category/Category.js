@@ -12,7 +12,7 @@ const Category = ({
   nextQuestion
 }) => (
   <section className="category crt">
-    <Link className ="back" to="">BACK</Link>
+    <Link className ="back" to="/home">BACK</Link>
     <p className="score">Score: {game.score}{clues && !remainingQuestions() && (<span>/{clues.length}</span>)}</p>
     <h3>[CATEGORY: {title}]</h3>
     { clues && remainingQuestions() && (
@@ -23,7 +23,6 @@ const Category = ({
         </div>
         {game.attempts !== 0 && (
         <div className="answer">
-          {/* <label htmlFor="answer">Your answer: </label> */}
           <span>
             <input
               id="answer"

@@ -16,23 +16,21 @@ class CategoryContainer extends Component {
       },
       input: '',
     }
-    this.inputChange = this.inputChange.bind(this)
-    this.checkAnswer = this.checkAnswer.bind(this)
-    this.resetCategory = this.resetCategory.bind(this)
-    this.remainingQuestions = this.remainingQuestions.bind(this)
-    this.nextQuestion = this.nextQuestion.bind(this)
   }
   
   componentWillMount () {
+    /** Save the category id that will be used in Home page in the categories list */
     storeLocal.saveLastCategory(this.props.match.params.id)
   }
 
   async componentDidMount () {
+    /** Get the questions of the category from the api */
     const data = await api.getCategorybyId(this.props.match.params.id)
     this.setState({
       category: data
     })
 
+    /** Get the previous state and score of the category questions */
     const gameData = storeLocal.getCategoryGame(this.props.match.params.id)
     if (gameData) {
       this.setState({
@@ -41,13 +39,20 @@ class CategoryContainer extends Component {
     }
   }
   
-  inputChange (e) {
+  /** Handle answer input value */
+  inputChange = (e) => {
     this.setState({
       input: e.target.value
     })
   }
 
-  checkAnswer (e) {
+  /**
+   * When the player confirm the answer input 
+   * the input value is compared with the true answer
+   * If the answer is correct, the next question is displayed
+   * else the number of attempts decrease
+  */
+  checkAnswer = (e) => {
     if (e.which !== 13) return
     if (this.state.game.attempts < 1) {
       return
@@ -78,11 +83,13 @@ class CategoryContainer extends Component {
         }
       }
     }, () => {
+      /** Save the state of the game */
       storeLocal.saveCategoryGame(this.state.game, this.props.match.params.id)
     })
   }
 
-  resetCategory (e) {
+  /** Reset the state of the category to initial */
+  resetCategory = (e) => {
     e.preventDefault()
     this.setState((state) => ({
       input: '',
@@ -94,15 +101,17 @@ class CategoryContainer extends Component {
         questionIndex: 0
       }
     }), () => {
-    storeLocal.saveCategoryGame(this.state.game, this.props.match.params.id)
+      storeLocal.saveCategoryGame(this.state.game, this.props.match.params.id)
     })
   }
 
-  remainingQuestions () {
+  /** Check if the player has answered to all the questions of the category */
+  remainingQuestions = () => {
     return this.state.game.questionIndex < this.state.category.clues.length
   }
 
-  nextQuestion () {
+  /** Skip to the next question */
+  nextQuestion = () => {
     console.log(this.state)
     this.setState((state) => ({
       input: '',
