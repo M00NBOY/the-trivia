@@ -1,48 +1,62 @@
 .homepage {
-  padding: 40px 80px;
-}
+  padding: 20px 20px;
 
-.homepage h2 {
-  margin-bottom: 40px;
-}
+  @media(min-width:768px) {
+    padding: 40px 80px;
+  }
 
-.homepage a {
-  text-decoration: none;
-  color: var(--main-font-color);
-  white-space: nowrap;
-}
+  h2 {
+    margin-bottom: 40px;
+  }
 
-.homepage a:focus, .homepage a:hover {
-  outline: none;
-  background-color: var(--main-font-color);
-  box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
-  color: #1b3a22;
-  text-shadow: none;
-}
+  li {
+    margin-bottom: 10px;
+    a {
+      text-decoration: none;
+      color: var(--main-font-color);
+  
+      &:before {
+        content:">";
+        margin-right: 10px;
+        visibility: hidden;
+      }
+      
+      &:focus, &:hover {
+        outline: none;
+        background-color: var(--main-font-color);
+        box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
+        color: #1b3a22;
+        text-shadow: none;
+        &:before {
+          visibility: visible;
+        }
+      }    
+    }
+  }
+  
+  button {
+    border: none;
+    background: transparent;
+    color: var(--main-font-color);
+    font-family: "VT323";
+    font-size: 30px;
+    margin-top: 50px;
+    cursor: pointer;
+  }
 
-.homepage a:before {
-  content:">";
-  margin-right: 10px;
-  visibility: hidden;
-}
+  .lastCatIndication{
+    margin-left: 20px;
+    color: rgb(255,255,50);
+    animation: blinking 1s infinite step-start;
+  }
 
-.homepage a:hover:before, .homepage a:focus:before {
-  visibility: visible;
-  /* animation: blinking 0.8s infinite step-start; */
-}
-
-.homepage .lastCatIndication {
-  margin-left: 20px;
-  color: rgb(255,255,50);
-  animation: blinking 1s infinite step-start;
-}
-
-.homepage button {
-  border: none;
-  background: transparent;
-  color: var(--main-font-color);
-  font-family: "VT323";
-  font-size: 30px;
-  margin-top: 50px;
-  cursor: pointer;
+  .moreCatButton {
+    color: var(--danger-color);
+    &:hover {
+      background-color: var(--danger-color);
+      box-shadow: 0 0 5px rgb(221, 41, 41), 0 0 5px rgb(255, 84, 84);
+      color: #1b3a22;
+      text-shadow: none;
+    }
+  }
 }
