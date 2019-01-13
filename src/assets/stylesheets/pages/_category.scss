@@ -1,5 +1,8 @@
 .category {
-  padding: 40px 80px;
+  padding: 20px 20px;
+  @media (min-width:768px) {
+    padding: 40px 80px;
+  }
 
   .back {
     display: block;
@@ -8,27 +11,21 @@
     white-space: nowrap;
     margin-bottom: 40px;
     width: min-content;
-    transform: translateX(-30px);
 
     &:before {
       content:"<";
       margin-right: 10px;
-      visibility: hidden;
     }
-
-    &:hover:before {
-      content:"<";
-      margin-right: 10px;
-      visibility: visible;
-    }
+  }
+  
+  .score {
+    margin-bottom: 5px;
+    color: var(--warning-color);
   }
 
   h3 {
-    margin-bottom: 10px;
-  }
-
-  .score {
-    margin-bottom: 40px
+    margin-bottom: 40px;
+    color: var(--warning-color);
   }
 
   .question {
@@ -47,7 +44,7 @@
     margin-bottom: 20px;
 
     span:before {
-      content: "=>";
+      content: ">";
       margin-right: 10px;
     }
   }
@@ -56,10 +53,11 @@
     font-family: "VT323";
     border: none;
     color: var(--main-font-color);
-    font-size: 40px;
+    font-size: 30px;
     background-color: transparent;
     width: min-content;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+    
   }
 
   button {
@@ -67,19 +65,30 @@
     background-color: transparent;
     color: var(--main-font-color);
     font-family: "VT323";
-    font-size: 40px;
+    font-size: 30px;
     cursor: pointer;
+    
+  }
+
+  a:focus, a:hover {
+    outline: none;
+    background-color: rgb(18, 218, 64);
+    box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
+    color: #1b3a22;
+    text-shadow: none;
   }
 
   .answerResult {
+    color: var(--danger-color);
     margin-bottom: 40px;
   }
 
   .nextQuestion {
     margin: 20px;
+    color: var(--danger-color);
     &:hover {
-      background-color: rgb(18, 218, 64);
-      box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
+      background-color: var(--danger-color);
+      box-shadow: 0 0 5px rgb(221, 41, 41), 0 0 5px rgb(255, 84, 84);
       color: #1b3a22;
       text-shadow: none;
     }
@@ -87,17 +96,12 @@
 
   .reset {
     margin-top: 40px;
-    transform: translateX(-30px);
-  }
-
-
-  a:focus, a:hover, button:focus, button:hover {
-    outline: none;
-    background-color: rgb(18, 218, 64);
-    box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
-    color: #1b3a22;
-    text-shadow: none;
+    color: var(--danger-color);
+    &:hover {
+      background-color: var(--danger-color);
+      box-shadow: 0 0 5px rgb(221, 41, 41), 0 0 5px rgb(255, 84, 84);
+      color: #1b3a22;
+      text-shadow: none;
+    }
   }
 }
-
-

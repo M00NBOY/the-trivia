@@ -1,34 +1,39 @@
 .homepage {
-  padding: 40px 80px;
+  padding: 20px 20px;
+
+  @media(min-width:768px) {
+    padding: 40px 80px;
+  }
 
   h2 {
     margin-bottom: 40px;
   }
 
-  a {
-    text-decoration: none;
-    color: var(--main-font-color);
-    white-space: nowrap;
-
-    &:before {
-      content:">";
-      margin-right: 10px;
-      visibility: hidden;
-    }
-    
-    &:focus, &:hover {
-      outline: none;
-      background-color: var(--main-font-color);
-      box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
-      color: #1b3a22;
-      text-shadow: none;
+  li {
+    margin-bottom: 10px;
+    a {
+      text-decoration: none;
+      color: var(--main-font-color);
+  
       &:before {
-        visibility: visible;
-        /* animation: blinking 0.8s infinite step-start; */  
+        content:">";
+        margin-right: 10px;
+        visibility: hidden;
       }
+      
+      &:focus, &:hover {
+        outline: none;
+        background-color: var(--main-font-color);
+        box-shadow: 0 0 5px #22ff22, 0 0 5px #aaffaa;
+        color: #1b3a22;
+        text-shadow: none;
+        &:before {
+          visibility: visible;
+        }
+      }    
     }
   }
-
+  
   button {
     border: none;
     background: transparent;
@@ -46,9 +51,9 @@
   }
 
   .moreCatButton {
-    color: rgb(255,50,50);
+    color: var(--danger-color);
     &:hover {
-      background-color: rgb(255,50,50);
+      background-color: var(--danger-color);
       box-shadow: 0 0 5px rgb(221, 41, 41), 0 0 5px rgb(255, 84, 84);
       color: #1b3a22;
       text-shadow: none;
