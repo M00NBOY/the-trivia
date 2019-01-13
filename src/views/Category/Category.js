@@ -33,6 +33,7 @@ const Category = ({
               value={input}
               onChange={inputChange}
               onKeyDown={checkAnswer}
+              autocomplete="off"
             />
           </span>
         </div>
